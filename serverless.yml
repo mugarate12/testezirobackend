@@ -60,6 +60,41 @@ provider:
 functions:
   hello:
     handler: handler.hello
+
+  getProducts:
+    handler: handler.getProducts
+    events:
+      - http:
+          path: products
+          method: get
+          cors: true
+
+  setProductToCart:
+    handler: handler.setProductToCart
+    events:
+      - http:
+          path: cart
+          method: post
+          cors: true
+
+  getCart:
+    handler: handler.getCart
+    events:
+      - http:
+          path: cart
+          method: get
+          cors: true
+
+  removeProductToCart:
+    handler: handler.removeProductToCart
+    events:
+      - http:
+          path: cart
+          method: delete
+          
+plugins:
+  - serverless-offline
+
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
 #    Check the event documentation for details

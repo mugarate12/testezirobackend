@@ -8,5 +8,10 @@
   "keywords": [],
   "author": "Mateus Cardoso",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "firebase": "^7.19.1",
+    "firebase-admin": "^9.1.1",
+    "serverless-offline": "^6.7.0"
+  }
 }
