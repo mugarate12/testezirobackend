@@ -46,6 +46,9 @@ module.exports.removeProductToCart = async (event, context, callback) => {
 const formatResponse = (body) => {
   return {
     statusCode: 200,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+  },
     body: JSON.stringify(body)
   }
 }

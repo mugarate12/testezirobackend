@@ -21,12 +21,36 @@ module.exports.getProducts = async () => {
 }
 
 module.exports.setProductToCart = async (id, name, price, url) => {
-  await db.collection(collections.cart).doc(id)
-    .set({
-      name,
-      price,
-      url    
+  let isUpdateOrNot = false
+  let count = 0
+  
+  await db.collection(collections.cart).get()
+    .then(snapshot => {
+      snapshot.forEach(doc => {
+        const productCartId = doc.id
+
+        if (productCartId === id) {
+          isUpdateOrNot = true
+          count = doc.data().count
+        }
+      })
     })
+
+  if (isUpdateOrNot) {
+    await db.collection(collections.cart).doc(id)
+      .update({
+        count: count + 1
+      })
+  } else {
+    await db.collection(collections.cart).doc(id)
+      .set({
+        name,
+        price,
+        url,
+        count: 1 
+      })
+  }
+  
 }
 
 module.exports.getCart = async () => {
