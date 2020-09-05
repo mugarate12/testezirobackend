@@ -39,7 +39,7 @@ module.exports.getCart = async (event, context, callback) => {
 module.exports.removeProductToCart = async (event, context, callback) => {
   const id = event.queryStringParameters.id
 
-  db.removeProductToCart(id)
+  await db.removeProductToCart(id)
   return formatResponse({sucess: true })
 }
 
